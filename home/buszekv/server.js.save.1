@@ -1,0 +1,85 @@
+var express = require('express');
+var bodyParser = require('body-parser');
+var mysql = require('mysql2');
+var path = require('path');
+var connection = mysql.createConnection({
+                host: '34.173.114.36',
+                user: 'root',
+                password: '123',
+                database: 'skaters'
+});
+
+connection.connect;
+
+
+var app = express();
+
+// set up ejs view engine 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+ 
+app.use(express.json());
+app.use(express.urlencoded({ extended: false }));
+app.use(express.static(path.join(__dirname, 'public')));
+
+/* GET home page, respond by rendering index.ejs */
+app.get('/', function(req, res) {
+  res.render('index', { title: 'Bias Tracker' });
+});
+
+app.get('/success', function(req, res) {
+      res.send({'message': 'Skater added'});
+});
+
+/* GET skaters database */
+app.get('/skaters', function(req, res) {
+  var sql = 'SELECT * FROM skater';
+
+  connection.query(sql, function(err, data, fields) {
+    if (err) {
+      res.send(err)
+      return;
+    }
+connection.query(sql, function(err, result) {
+    if (err) {
+      res.send(err)
+      return;
+    }
+    res.redirect('/success');
+  });
+  });
+	
+});
+
+app.get('/competitions', function(req, res) {
+  res.render('competitions', {title: 'Competitions Table'});
+});
+
+app.get('/judges', function(req, res) {
+  res.render('judges', {title: 'Judges  Table'});
+});
+ 
+// this code is executed when a user clicks the form submit button
+app.post('/mark', function(req, res) {
+  var name  = req.body.name;
+   
+  var sql = `INSERT INTO skater (name, nationality) VALUES ('${name}','NAT')`;
+
+
+
+console.log(sql);
+  connection.query(sql, function(err, result) {
+    if (err) {
+      res.send(err)
+      return;
+    }
+    res.redirect('/success');
+  });
+});
+
+
+
+app.listen(80, function () {
+    console.log('Node app is running on port 80');
+
+});

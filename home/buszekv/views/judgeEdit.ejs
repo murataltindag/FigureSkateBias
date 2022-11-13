@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <title>Judge Update</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+ </head>
+
+ <body>
+   <div class="container mt-4">
+     <div class="card">
+       <div class="card-body">
+         <h2>Insert a Judge</h2>
+         <form action="insert_judge" method="POST">
+           <div class="form-group">
+             <label for="name">i_name</label>
+             <input type="text" class="form-control col-lg-9" id="i_name" aria-describedby="emailHelp" placeholder="Enter Name" name="i_name">
+           </div>
+           <div class="form-group">
+             <label for="name">i_nat</label>
+             <input type="text" class="form-control col-lg-9" id="i_nat" aria-describedby="emailHelp" placeholder="Enter Nationality" name="i_nat">
+           </div>
+           <div class="form-group">
+             <label for="name">i_role</label>
+             <input type="text" class="form-control col-lg-9" id="i_role" aria-describedby="emailHelp" placeholder="Enter Role" name="i_role">
+           </div>
+           <div class="form-group">
+             <label for="name">i_cat</label>
+             <input type="text" class="form-control col-lg-9" id="i_cat" aria-describedby="emailHelp" placeholder="Enter Category" name="i_cat">
+           </div>
+           <div class="form-group">
+             <label for="name">i_prog</label>
+             <input type="text" class="form-control col-lg-9" id="i_prog" aria-describedby="emailHelp" placeholder="Enter Program" name="i_prog">
+           </div>
+           <div class="form-group">
+             <label for="name">i_comp</label>
+             <input type="text" class="form-control col-lg-9" id="i_comp" aria-describedby="emailHelp" placeholder="Enter Competition" name="i_comp">
+           </div>
+           <button type="submit" class="btn btn-primary">Submit</button>
+		</form>
+    </div>
+   </div>
+   </div>
+<div class="container mt-4">
+ <div class="card">
+   <div class="card-body">
+	 <h2>Delete a Judge by name</h2>
+	 <form action="delete_judge" method="POST">
+	   <div class="form-group">
+		 <label for="name">d_name</label>
+		 <input type="text" class="form-control col-lg-9" id="d_name" aria-describedby="emailHelp" placeholder="Enter Name" name="d_name">
+	   </div>
+	   <button type="submit" class="btn btn-primary">Submit</button>
+	 </form>
+</div>
+ </div>
+ </div>
+ <div class="container mt-4">
+     <div class="card">
+       <div class="card-body">
+         <h2>Update a Judge nationality by name</h2>
+         <form action="update_judge" method="POST">
+           <div class="form-group">
+             <label for="name">u_name</label>
+             <input type="text" class="form-control col-lg-9" id="u_name" aria-describedby="emailHelp" placeholder="Enter Name" name="u_name">
+           </div>
+           <div class="form-group">
+             <label for="name">u_nat</label>
+             <input type="text" class="form-control col-lg-9" id="u_nat" aria-describedby="emailHelp" placeholder="Enter New Nationality" name="u_nat">
+           </div>
+           <button type="submit" class="btn btn-primary">Submit</button>
+         </form>
+   </div>
+ </div>
+ </div>
