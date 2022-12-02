@@ -14,7 +14,7 @@ connection.connect;
 
 
 var app = express();
-
+app.locals.barChartHelper = require('./public/javascripts/barChartHelper.js');
 // set up ejs view engine 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -22,7 +22,6 @@ app.set('view engine', 'ejs');
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
-
 /* GET home page, respond by rendering index.ejs */
 app.get('/', function(req, res) {
   res.render('index', { title: 'Bias Tracker' });
@@ -211,7 +210,7 @@ app.post('/insert_judge', function(req, res) {
   var insert_prog = req.body.i_prog;
   var insert_comp = req.body.i_comp;
 
-  var sql = `INSERT INTO judge (judgeName, nationality, role, segmentCategory, program, competition) VALUES ('${insert_name}','${insert_nat}','${insert_role}','${insert_categ}','${insert_prog}','${insert_comp}'`;
+  var sql = `INSERT INTO judge (judgeName, nationality, role, segmentCategory, program, competition) VALUES ('${insert_name}','${insert_nat}','${insert_role}','${insert_categ}','${insert_prog}','${insert_comp}')`;
 
   console.log(sql);
   connection.query(sql, function(err, result) {
@@ -273,6 +272,8 @@ app.post('/judges-search', function(req, res) {
    });
 });
 
+
+// getting advanced queries in table format
 app.get('/advancedQueries', function(req, res) {
  var query1  = 'SELECT judgeName, judge.nationality AS judgeNat, skater.nationality AS skaterNat, AVG(avgComponentScore) AS avgScoreFromJudge FROM skater JOIN score ON name = skaterName JOIN judge ON competitionName = competition AND score.program = judge.program AND judgeRole = role GROUP BY judgeName, judge.nationality, skater.nationality;';
  var query2 = 'SELECT judgeName, MAX(avgScoreFromJudge) AS maxScore, MIN(avgScoreFromJudge) AS minScore, AVG(avgScoreFromJudge) AS avgScore FROM ( SELECT judgeName, judge.nationality AS judgeNat, skater.nationality AS skaterNat, AVG(avgComponentScore) AS avgScoreFromJudge FROM skater JOIN score ON name = skaterName JOIN judge ON competitionName = competition AND score.program = judge.program AND judgeRole = role GROUP BY judgeName, judge.nationality, skater.nationality) avgs GROUP BY judgeName;';
@@ -293,6 +294,73 @@ app.get('/advancedQueries', function(req, res) {
       });
    });
 });
+
+// getting default specific bias in graph format
+app.get('/advancedQueriesVisual', function(req, res) {
+ var query1  = 'SELECT judgeName, judge.nationality AS judgeNat, skater.nationality AS skaterNat, AVG(avgComponentScore) AS avgScoreFromJudge FROM skater JOIN score ON name = skaterName JOIN judge ON competitionName = competition AND score.program = judge.program AND judgeRole = role GROUP BY judgeName, judge.nationality, skater.nationality HAVING judgeName  = "Mr. Alexei BELETSKI";';
+ var query2 = 'SELECT DISTINCT judgeName FROM judge;';
+
+   connection.query(query1, function(err, data, fields1) {
+      if (err) {
+        res.send(err)
+        return;
+      }
+
+      connection.query(query2, function(err, judges, fields2) {
+       if (err) {
+         res.send(err)
+         return;
+       }
+
+       res.render('advancedQueriesVisual', {title: 'Advanced Queries Visual', query1: data, query2: judges});
+      });
+   });
+});
+
+
+// getting selected judge bias in graph format
+app.post('/advancedQueriesVisual-select', function(req, res) {
+ var name = req.body.judgeName
+ var query1 = `SELECT judgeName, judge.nationality AS judgeNat, skater.nationality AS skaterNat, AVG(avgComponentScore) AS avgScoreFromJudge FROM skater JOIN score ON name = skaterName JOIN judge ON competitionName = competition AND score.program = judge.program AND judgeRole = role WHERE judgeName = '${name}' GROUP BY judgeName, judge.nationality, skater.nationality;`;
+ var query2 = 'SELECT DISTINCT judgeName FROM judge;';
+
+   connection.query(query1, function(err, data, fields1) {
+      if (err) {
+        res.send(err)
+        return;
+      }
+
+      connection.query(query2, function(err, judges, fields2) {
+       if (err) {
+         res.send(err)
+         return;
+       }
+
+       res.render('advancedQueriesVisual', {title: 'Advanced Queries Visual', query1: data, query2: judges});
+      });
+   });
+});
+
+app.get('/biasedJudges', function(req, res) {
+ var procedure  = 'CALL findBiasedJudges()';
+ var query = 'SELECT * FROM biases'
+
+ connection.query(procedure, function(err, data, fields1) {
+      if (err) {
+        res.send(err)
+        return;
+      }
+
+      connection.query(query, function(err, data1, fields2) {
+       if (err) {
+         res.send(err)
+         return;
+       }
+	res.render('biasedJudges', {title: 'Biased Judges', query: data1});
+      });
+ });
+});
+
 
 // this code is executed when a user clicks the form submit button
 app.post('/mark', function(req, res) {

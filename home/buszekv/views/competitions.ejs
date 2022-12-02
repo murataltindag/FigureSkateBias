@@ -7,12 +7,12 @@
    <link rel="stylesheet" href="stylesheets/style.css">
  </head>
 
- <body>
+<body>
 
-<header class="header">
+  <header class="header">
         <div class="header__brand">
-            <a class="header__logo" href="">
-                <img src={logo} class="header__img"></img>
+            <a class="header__logo" method="GET" href="/">
+                <img src='https://storage.cloud.google.com/cs411-11-8-22/logo.png' class="header__img"></img>
             </a>
 
             <h1 class="header__title">National Bias Tracker</h1>
@@ -30,16 +30,19 @@
                       <a href="judges" method="GET" class='primary-nav__link'>Judges</Link>
                 </li>
                 <li class="primary-nav__item">
-                    <a href="advancedQueries" class="primary-nav__link" href="">Bias Visualizer</a>
+                    <a href="advancedQueries" class="primary-nav__link" href="">Advanced Queries</a>
+                </li>
+		<li class="primary-nav__item">
+                    <a href="advancedQueriesVisual" class="primary-nav__link" href="">Bias Visualizer</a>
                 </li>
                 <li class="primary-nav__item">
-                    <a class="primary-nav__link" href="">Login</a>
+                    <a class="primary-nav__link" href="biasedJudges">Biased Judges</a>
                 </li>
             </ul>
         </nav>
- </header>
+  </header>
 
- <div class="table-container">
+  <div class="table-container">
    <h2 class="table-header">Competition</h2>
    <a href="compEdit" class="btn update-btn"> Update Table </a>
 
@@ -49,9 +52,9 @@
             <option value="name">Name</option>
           </select>
           <button class="btn btn-submit" type="submit">Search</button>
-    </form>
+   </form>
 
-     <table class="table">
+   <table class="table">
         <tbody class="table__body">
            <tr class="table__row table__row--dark">
              <th class="table__header">Name</th>
@@ -71,8 +74,7 @@
                 <td class='table__data' colspan="7">No Data Found</td>
             </tr>
         <% } %> 
-	</table>        
-   </div> 
+   </table>         
  </div>
- </body>
+</body>
 </html>

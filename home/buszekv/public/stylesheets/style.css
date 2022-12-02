@@ -43,7 +43,7 @@ body {
   margin: auto 0.5em;
 }
 .header__img {
-  width: 10em;
+  max-width: 10em;
 }
 
 .primary-nav {
@@ -122,3 +122,27 @@ body {
 .intro__text {
   font-size: 1.25rem;
 }
+
+.visual-container {
+ text-align: center;
+}
+
+#bar-chart {
+  max-width: 60%;
+  margin: 0 auto;
+}
+.svg-chart {
+  padding: 4px;
+  border: 1px oslid #ccc;
+  margin: 0 auto;
+}
+
+.svg-chart .background {
+        shape-rendering: crispEdges;
+        stroke: #ccc;
+        fill: #fdfdfd;
+        stroke-width: 1px;
+      }
+
+.svg-chart .bar { fill: #4682B4; }
+.svg-chart .axis-label { fill: currentColor; }

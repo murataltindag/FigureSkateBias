@@ -12,8 +12,8 @@
 
 <header class="header">
         <div class="header__brand">
-            <a class="header__logo" href="">
-                <img src={logo} class="header__img"></img>
+            <a class="header__logo" method="GET" href="/">
+                <img src='https://storage.cloud.google.com/cs411-11-8-22/logo.png' class="header__img"></img>
             </a>
 
             <h1 class="header__title">National Bias Tracker</h1>
@@ -30,11 +30,14 @@
                 <li class="primary-nav__item">
                       <a href="judges" method="GET" class='primary-nav__link'>Judges</Link>
                 </li>
-                <li class="primary-nav__item">
-                    <a href="advancedQueries" class="primary-nav__link" href="">Bias Visualizer</a>
+		<li class="primary-nav__item">
+                    <a href="advancedQueries" method="GET" class="primary-nav__link">Advanced Queries</a>
                 </li>
                 <li class="primary-nav__item">
-                    <a class="primary-nav__link" href="">Login</a>
+                    <a href="advancedQueriesVisual" method="GET" class="primary-nav__link">Bias Visualizer</a>
+                </li>
+                <li class="primary-nav__item">
+                    <a class="primary-nav__link" href="biasedJudges">Biased Judges</a>
                 </li>
             </ul>
         </nav>

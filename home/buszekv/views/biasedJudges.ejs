@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <title>Bias Tracker</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="/stylesheets/style.css">
+ </head>
+ 
+ <body>
+ 
+ <header class="header">
+        <div class="header__brand">
+            <a class="header__logo" method="GET" href="/">
+                <img src='https://storage.cloud.google.com/cs411-11-8-22/logo.png' class="header__img"></img>
+            </a>
+
+            <h1 class="header__title">National Bias Tracker</h1>
+        </div>
+		
+		<nav class="primary-nav">
+            <ul class="primary-nav__list">
+                <li class="primary-nav__item">
+                    <a href="competitions" method="GET" class='primary-nav__link'>Competitions</Link>
+                </li>
+                <li class="primary-nav__item">
+                      <a href="skaters" method="GET" class='primary-nav__link'>Skaters</Link>
+                </li>
+                <li class="primary-nav__item">
+                      <a href="judges" method="GET" class='primary-nav__link'>Judges</Link>
+                </li>
+                <li class="primary-nav__item">
+                    <a href="advancedQueries" class="primary-nav__link">Advanced Queries</a>
+                </li>
+                <li class="primary-nav__item">
+                    <a href="advancedQueriesVisual" class="primary-nav__link">Bias Visualizer</a>
+                </li>
+                <li class="primary-nav__item">
+                    <a class="primary-nav__link" href="biasedJudges">Biased Judges</a>
+                </li>
+            </ul>
+        </nav>
+ </header>
+
+ <body>
+   
+ <div class="table-container">
+   <h2 class="table-header">Biased Judges</h2>
+   
+   <table class="table">
+        <tbody class="table__body">
+           <tr class="table__row table__row--dark">
+             <th class="table__header">Judge Name</th>
+			 <th class="table__header">Judge Nationality</th>
+			 <th class="table__header">Biased Towards</th>
+           </tr>
+
+         <%
+          if(query.length!=0){
+          var i=1;
+          query.forEach(function(data1){
+          %>
+          <tr class='table__row'>
+            <td class='table__data'><%=data1.judgeName %></td>
+			<td class='table__data'><%=data1.judgeNat %></td>
+			<td class='table__data'><%=data1.skaterNat %></td>
+        </tr>
+        <%  i++; }) %>
+        <% } else{ %>
+            <tr>
+                <td class='table__data' colspan="7">No Data Found</td>
+            </tr>
+        <% } %>
+   </table>
+ </div>
+   
+
+ </body>
+</html>
