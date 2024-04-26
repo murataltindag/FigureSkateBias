@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+ <head>
+   <title>Competition Edit Page</title>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+ </head>
+
+ <body>
+   <div class="container mt-4">
+     <div class="card">
+       <div class="card-body">
+         <h2>Insert a Competition name</h2>
+         <form action="insert_comp" method="POST">
+           <div class="form-group">
+             <label for="name">i_name</label>
+             <input type="text" class="form-control col-lg-9" id="i_name" aria-describedby="emailHelp" placeholder="Enter Name" name="i_name">
+           </div>
+           <button type="submit" class="btn btn-primary">Submit</button>
+         </form>
+    </div>
+   </div>
+ </div>
+   <div class="container mt-4">
+     <div class="card">
+       <div class="card-body">
+         <h2>Delete a Competition by name</h2>
+         <form action="delete_comp" method="POST">
+           <div class="form-group">
+             <label for="name">d_name</label>
+             <input type="text" class="form-control col-lg-9" id="d_name" aria-describedby="emailHelp" placeholder="Enter Name" name="d_name">
+           </div>
+           <button type="submit" class="btn btn-primary">Submit</button>
+         </form>
+   </div>
+ </div>
+ </div>
+
+ </div>
+ </div>
+ </body>
+</html>
