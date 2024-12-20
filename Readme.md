@@ -41,3 +41,16 @@ and detailed scoring.
 All we need to do is read the JSON file and insert it into the corresponding table, e.g. grab the
 judges' information and insert it into table Judges. Skating scores' data is highly visualized, so
 we can better understand how to analyze each part.
+# Team Info
+
+|   Info      |        Description     |
+| ----------- | ---------------------- |
+| TeamName    |         Mango          |
+| Captain     |       Athena Zheng     |
+| Captain     |  athenaz2@illinois.edu |
+| Member1     |        Zepei Li        |
+| Member1     |  zepeili2@illinois.edu |
+| Member2     |     Murat Altindag     |
+| Member2     |  murata3@illinois.edu  |
+| Member3     |    Victoria Buszek     |
+| Member3     |  vbuszek2@illinois.edu |
